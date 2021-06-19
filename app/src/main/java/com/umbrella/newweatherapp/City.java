@@ -4,21 +4,15 @@ import java.io.Serializable;
 
 public class City implements Serializable {
 
-    private String name;
-    private String status;
-    private String temperature;
-    private String tomorrowDay;
-    private String tomorrowDayStatus;
-    private String tomorrowDayTemperature;
-    private String afterTomorrowDay;
-    private String afterTomorrowDayStatus;
-    private String afterTomorrowDayTemperature;
-
-    public City(String name, String status, String temperature) {
-        this.name = name;
-        this.status = status;
-        this.temperature = temperature;
-    }
+    private final String name;
+    private final String status;
+    private final String temperature;
+    private final String tomorrowDay;
+    private final String tomorrowDayStatus;
+    private final String tomorrowDayTemperature;
+    private final String afterTomorrowDay;
+    private final String afterTomorrowDayStatus;
+    private final String afterTomorrowDayTemperature;
 
     public City(String name, String status, String temperature, String tomorrowDay, String tomorrowDayStatus, String tomorrowDayTemperature, String afterTomorrowDay, String afterTomorrowDayStatus, String afterTomorrowDayTemperature) {
         this.name = name;

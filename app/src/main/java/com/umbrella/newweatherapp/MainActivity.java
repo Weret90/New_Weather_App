@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.umbrella.newweatherapp.fragments.CitiesFragment;
-import com.umbrella.newweatherapp.fragments.CityInfoFragment;
 
 public class MainActivity extends AppCompatActivity {
 

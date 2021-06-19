@@ -1,42 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <TextView
         android:id="@+id/textViewName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_weight="4"
-        android:gravity="center"
-        android:text="Москва"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        style="@style/city_item_style"
+        android:layout_weight="2"
+        tool:text="Москва"
+        tool:textColor="@color/black"/>
 
 
     <TextView
         android:id="@+id/textViewStatus"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:text="Облачно"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        style="@style/city_item_style"
+        android:layout_weight="1"
+        tool:text="Облачно"
+        tool:textColor="@color/black"/>
 
 
     <TextView
         android:id="@+id/textViewTemperature"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:text="20С / 15С"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        style="@style/city_item_style"
+        android:layout_weight="1"
+        tool:text="20°С"
+        tool:textColor="@color/black"/>
 
 </LinearLayout>

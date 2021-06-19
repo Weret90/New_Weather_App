@@ -8,11 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder> implements Serializable {
+public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder> {
 
     private ArrayList<City> cities;
     private OnCityClickListener onCityClickListener;
@@ -61,12 +60,9 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
             textViewStatus = itemView.findViewById(R.id.textViewStatus);
             textViewTemperature = itemView.findViewById(R.id.textViewTemperature);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onCityClickListener != null) {
-                        onCityClickListener.onCityClick(getAdapterPosition());
-                    }
+            itemView.setOnClickListener(v -> {
+                if (onCityClickListener != null) {
+                    onCityClickListener.onCityClick(getAdapterPosition());
                 }
             });
         }

@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CitiesFragment">
+    tools:context=".fragments.CitiesFragment"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/weather">
+
+    <TextView
+        style="@style/headline_style"
+        android:text="@string/fragment_cities_headline"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_gravity="center"
         android:id="@+id/recyclerViewCities"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
-</FrameLayout>
+</LinearLayout>

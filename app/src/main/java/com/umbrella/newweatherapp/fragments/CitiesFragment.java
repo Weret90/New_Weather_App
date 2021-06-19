@@ -26,16 +26,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 
 
 public class CitiesFragment extends Fragment {
 
-    private final String MOSCOW_URL = "https://api.openweathermap.org/data/2.5/weather?q=москва&appid=67401936c26274f7e3d9b19dd82b101c&lang=ru&units=metric";
-    private final String PITER_URL = "https://api.openweathermap.org/data/2.5/weather?q=санкт-петербург&appid=67401936c26274f7e3d9b19dd82b101c&lang=ru&units=metric";
-    private final String YAKUTSK_URL = "https://api.openweathermap.org/data/2.5/weather?q=якутск&appid=67401936c26274f7e3d9b19dd82b101c&lang=ru&units=metric";
-    private RecyclerView recyclerViewCities;
+    private final String MOSCOW_LATITUDE = "55.75";
+    private final String ST_PETERBURG_LATITUDE = "59.93";
+    private final String MOSCOW_URL = "https://api.openweathermap.org/data/2.5/onecall?lat=55.75&lon=37.61&appid=67401936c26274f7e3d9b19dd82b101c&lang=ru&units=metric";
+    private final String PITER_URL = "https://api.openweathermap.org/data/2.5/onecall?lat=59.93&lon=30.33&appid=67401936c26274f7e3d9b19dd82b101c&lang=ru&units=metric";
+    private final String YAKUTSK_URL = "https://api.openweathermap.org/data/2.5/onecall?lat=62.03&lon=129.67&appid=67401936c26274f7e3d9b19dd82b101c&lang=ru&units=metric";
     private ArrayList<City> cities = new ArrayList<>();
     private CountDownLatch countDownLatch = new CountDownLatch(3);
 
@@ -63,8 +66,8 @@ public class CitiesFragment extends Fragment {
                 task2.execute(YAKUTSK_URL);
             }).start();
             new Thread(() -> {
-                DownloadWeatherTask task2 = new DownloadWeatherTask();
-                task2.execute(PITER_URL);
+                DownloadWeatherTask task3 = new DownloadWeatherTask();
+                task3.execute(PITER_URL);
             }).start();
 
             try {
@@ -74,7 +77,7 @@ public class CitiesFragment extends Fragment {
             }
         }
 
-        recyclerViewCities = view.findViewById(R.id.recyclerViewCities);
+        RecyclerView recyclerViewCities = view.findViewById(R.id.recyclerViewCities);
         CitiesAdapter adapter = new CitiesAdapter(cities);
         recyclerViewCities.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerViewCities.setAdapter(adapter);
@@ -109,14 +112,36 @@ public class CitiesFragment extends Fragment {
             return result.toString();
         }
 
-        @Override
         protected void onPostExecute(String s) {
             try {
                 JSONObject jsonObject = new JSONObject(s);
-                String city = jsonObject.getString("name");
-                String temp = jsonObject.getJSONObject("main").getString("temp");
-                String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
-                cities.add(new City(city, description, temp));
+                String latitude = jsonObject.getString("lat");
+                String city;
+                switch (latitude) {
+                    case MOSCOW_LATITUDE:
+                        city = "Москва";
+                        break;
+                    case ST_PETERBURG_LATITUDE:
+                        city = "Санкт-Петербург";
+                        break;
+                    default:
+                        city = "Якутск";
+                        break;
+                }
+                String temperature = jsonObject.getJSONObject("current").getString("temp") + "°C";
+                String status = jsonObject.getJSONObject("current").getJSONArray("weather").getJSONObject(0).getString("description");
+                String tomorrowDay = jsonObject.getJSONArray("daily").getJSONObject(1).getString("dt");
+                String tomorrowTemperature = jsonObject.getJSONArray("daily").getJSONObject(1).getJSONObject("temp").getString("day") + "°C";
+                String tomorrowStatus = jsonObject.getJSONArray("daily").getJSONObject(1).getJSONArray("weather").getJSONObject(0).getString("description");
+                String afterTomorrowDay = jsonObject.getJSONArray("daily").getJSONObject(2).getString("dt");
+                String afterTomorrowTemperature = jsonObject.getJSONArray("daily").getJSONObject(2).getJSONObject("temp").getString("day") + "°C";
+                String afterTomorrowStatus = jsonObject.getJSONArray("daily").getJSONObject(2).getJSONArray("weather").getJSONObject(0).getString("description");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM");
+                Date tomorrow = new Date(Long.parseLong(tomorrowDay) * 1000);
+                Date afterTomorrow = new Date(Long.parseLong(afterTomorrowDay) * 1000);
+
+                cities.add(new City(city, status, temperature, sdf.format(tomorrow), tomorrowStatus, tomorrowTemperature, sdf.format(afterTomorrow), afterTomorrowStatus, afterTomorrowTemperature));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

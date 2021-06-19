@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="headline_text_size">28sp</dimen>
+    <dimen name="headline_margin">16dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="item_text_size">16sp</dimen>
+    <dimen name="default_table_item_padding">2dp</dimen>
+    <dimen name="default_table_item_margin_bottom">4dp</dimen>
+</resources>

@@ -1,137 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:background="@drawable/weather">
 
     <TextView
         android:id="@+id/cityName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Москва"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        style="@style/headline_style"
+        app:layout_constraintBottom_toTopOf="@id/table"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tool:text="Москва"/>
 
     <TableLayout
+        android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cityName">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Дата" />
+                style="@style/table_style"
+                android:layout_weight="1.2"
+                android:text="@string/date" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Сегодня" />
+                android:text="@string/today" />
 
             <TextView
                 android:id="@+id/tomorrowDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="17.07" />
+                tool:text="17.07" />
 
             <TextView
                 android:id="@+id/afterTomorrowDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="18.07" />
+                tool:text="18.07" />
 
         </TableRow>
 
         <TableRow
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Температура, С" />
+                style="@style/table_style"
+                android:layout_weight="1.2"
+                android:text="@string/temperature" />
 
             <TextView
                 android:id="@+id/currentTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="18" />
+                tool:text="18°C"
+                />
 
             <TextView
                 android:id="@+id/tomorrowTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="19" />
+                tool:text="19°C" />
 
             <TextView
                 android:id="@+id/afterTomorrowTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="20" />
+                tool:text="20°C" />
         </TableRow>
 
         <TableRow
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="На улице" />
+                style="@style/table_style"
+                android:layout_weight="1.2"
+                android:text="@string/status" />
 
             <TextView
                 android:id="@+id/currentStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Облачно" />
+                tool:text="Облачно" />
 
             <TextView
                 android:id="@+id/tomorowStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Ясно" />
+                tool:text="Ясно" />
 
             <TextView
                 android:id="@+id/afterTomorrowStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/table_style"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Дождь" />
+                tool:text="Дождь" />
         </TableRow>
 
 
